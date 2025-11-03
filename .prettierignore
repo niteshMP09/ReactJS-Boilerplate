@@ -1,0 +1,20 @@
+# dependencies
+node_modules
+
+# build output
+dist
+build
+coverage
+
+# environment and lock files
+.env
+.env.*
+package-lock.json
+yarn.lock
+
+# configuration
+.vscode
+.eslintcache
+
+# generated files
+*.log
