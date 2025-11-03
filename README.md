@@ -1,73 +1,160 @@
-# React + TypeScript + Vite
+# React Boilerplate Project 🧱
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a **React + Vite** boilerplate setup with **ESLint**, **Prettier**, **Husky**, and **Dependabot** pre-configured for development workflow automation and code quality.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- ⚡ **Vite** for fast React development
+- 🧹 **ESLint** for code linting and style enforcement
+- 🎨 **Prettier** for code formatting
+- 🐶 **Husky** for Git hooks (pre-commit checks)
+- 🤖 **Dependabot** for automatic dependency updates
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Setup Instructions
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1. Install dependencies
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Run the development server
+```bash
+npm run dev
 ```
+
+---
+
+## 🧹 ESLint Setup
+
+ESLint is already configured in this project to help maintain clean and consistent code.
+
+To manually check lint errors, run:
+```bash
+npm run lint
+```
+
+If errors appear on save, check your `.vscode/settings.json`:
+```json
+{
+  "editor.defaultFormatter": null,
+  "editor.formatOnSave": false
+}
+```
+
+---
+
+## 🎨 Prettier Setup
+
+To ensure consistent formatting, Prettier is used alongside ESLint.
+
+Prettier configuration file: `.prettierrc`  
+Ignored files: `.prettierignore`
+
+---
+
+## 🐶 Husky Setup
+
+Husky enforces linting before commits.
+
+If Husky isn’t installed properly, reinstall it using:
+```bash
+pnpm dlx husky init
+```
+Then, ensure your pre-commit file contains:
+```bash
+#!/bin/sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint
+```
+
+You can test Husky by making a commit — it will automatically run ESLint.
+
+---
+
+## 🤖 Dependabot Setup
+
+Dependabot keeps your dependencies up to date automatically.
+
+Configuration file: `.github/dependabot.yml`
+```yaml
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "chore(deps)"
+    ignore:
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+```
+
+After pushing this to GitHub, go to:
+**Settings → Code security and analysis → Enable Dependabot alerts**
+
+---
+
+## 🧑‍💻 Development
+
+Start the dev server:
+```bash
+npm run dev
+```
+
+Build for production:
+```bash
+npm run build
+```
+
+Preview build locally:
+```bash
+npm run preview
+```
+
+---
+
+## ✅ Commit Messages
+
+Follow [Conventional Commits](https://www.conventionalcommits.org/) for clarity and automation.
+
+Examples:
+```
+chore: setup ESLint and Prettier
+chore: configure Husky for pre-commit linting
+chore: add Dependabot for automatic dependency updates
+```
+
+---
+
+## 📂 Folder Structure
+
+```
+react-boilerplate/
+├── .husky/                 # Git hooks
+├── .vscode/                # VSCode settings
+├── public/                 # Static assets
+├── src/                    # Source code
+├── .eslintrc.json          # ESLint configuration
+├── .prettierrc             # Prettier configuration
+├── .prettierignore         # Files ignored by Prettier
+├── .github/dependabot.yml  # Dependabot configuration
+├── package.json
+└── vite.config.ts
+```
+
+---
+
+## 🧾 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Made with ❤️ by Nitesh Sikarwar
